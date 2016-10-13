@@ -1,0 +1,29 @@
+# Path to your oh-my-fish.
+set fish_path $HOME/.oh-my-fish
+eval sh $HOME/.config/base16-shell/base16-monokai.dark.sh
+
+# fix virtualenv in shell
+set -x VIRTUAL_ENV_DISABLE_PROMPT 1
+
+# Path to your custom folder (default path is ~/.oh-my-fish/custom)
+#set fish_custom $HOME/dotfiles/oh-my-fish
+
+# Load oh-my-fish configuration.
+. $fish_path/oh-my-fish.fish
+
+# Load autojump
+. ~/.config/fish/autojump.fish
+
+# Custom plugins and themes may be added to ~/.oh-my-fish/custom
+# Plugins and themes can be found at https://github.com/oh-my-fish/
+Theme 'bobthefish'
+
+Plugin 'theme'
+Plugin 'jump'
+
+# switch (pwd)
+#   case /Users/eelke/Sites/nrc/pulpjs
+#     echo -e "\033]6;1;bg;red;brightness;255\a" 
+#     echo -e "\033]6;1;bg;green;brightness;0\a" 
+#     echo -e "\033]6;1;bg;blue;brightness;255\a"
+# end

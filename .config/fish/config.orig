@@ -1,0 +1,48 @@
+. ~/.config/fish/autojump.fish
+. ~/.config/fish/ssh_agent_start.fish
+
+set -x PYTHONIOENCODING utf-8
+set PATH ~/Go/bin $PATH
+
+function la
+    ls -latrh $argv
+end
+
+function fuck
+    sudo $history[1]
+end
+
+function iphone6
+    sudo xcrun instruments -w "iPhone 6 (8.1 Simulator)"
+end
+
+set fish_git_dirty_color red
+set fish_git_not_dirty_color green
+set fish_me_color F24
+
+function parse_git_branch
+  set -l branch (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
+  set -l git_diff (git diff)
+
+  if test -n "$git_diff"
+    echo (set_color $fish_git_dirty_color)$branch(set_color normal)
+  else
+    echo (set_color $fish_git_not_dirty_color)$branch(set_color normal)
+  end
+end
+
+function fish_prompt
+  if test -d .git
+    printf '%s@%s%s%s:%s> ' (whoami) (set_color $fish_color_cwd) (prompt_pwd) (set_color normal) (parse_git_branch)
+  else
+    set_color $fish_me_color
+    printf '%s@%s%s%s> ' (whoami) (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
+  end
+end
+
+function fish_user_key_bindings
+    bind § forward-char
+end
+ 
+
+
